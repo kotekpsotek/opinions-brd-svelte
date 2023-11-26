@@ -2,9 +2,24 @@
     import { Rating } from "flowbite-svelte";
     // import InputIcon from "./utils/InputIcon.svelte"
     import { Forum, CloseOutline, Send } from "carbon-icons-svelte";
+    import { scale } from "svelte/transition";
 
     export let starsCount: StarsCount;
     export let shareOpinionIconSize = 25 as 32;
+    export let requirementsToSendOpinion = {
+        minSizes: {
+            title: 5,
+            userName: 1,
+            email: 2,
+            content: 20
+        },
+        maxMaxSizes: {
+            content: 20000,
+            userName: 30,
+            title: 40,
+            email: 200
+        }
+    }
 
     let email = "";
     let userName = "";
@@ -20,6 +35,18 @@
 
     function acceptOpinion() {
         // TODO: ...
+    }
+
+    /**
+     * When user would like to send his opinion must meet firstly some sophisticated conditions
+    */
+    function spawnSendOpinion() {
+        const emailCond = email.includes("@") && email.length >= requirementsToSendOpinion.minSizes.email && email.length <= requirementsToSendOpinion.maxMaxSizes.email;
+        const userCond = userName.length >= requirementsToSendOpinion.minSizes.userName && userName.length <= requirementsToSendOpinion.maxMaxSizes.userName;
+        const titleCond = title.length >= requirementsToSendOpinion.minSizes.title && title.length <= requirementsToSendOpinion.maxMaxSizes.title;
+        const contentCond = content.length >= requirementsToSendOpinion.minSizes.content && content.length <= requirementsToSendOpinion.maxMaxSizes.content;
+        
+        return emailCond && userCond && titleCond && contentCond ? true : false;
     }
 </script>
 
@@ -45,7 +72,7 @@
                     <div id="one-schema">
                         <h2 class="h2">How other see you</h2>
                         <div class="flex gap-x-2 w-full">
-                            <input type="text" class="input w-1/2" placeholder="Email">
+                            <input type="text" class="input w-1/2" placeholder="Email" bind:value={email}>
                             <input type="text" class="input w-1/2" placeholder="Your Name" bind:value={userName}>
                         </div>
                         <!-- <InputIcon bind:value={email} placeholder="Email"/> -->
@@ -63,9 +90,11 @@
                 <button id="close" class="button bg-slate-500 hover:shadow-slate-500" on:click={fnExpandCloseWriteOpinion}>
                     <CloseOutline size={24} fill="white"/>
                 </button>
-                <button id="send" class="button bg-emerald-600 hover:shadow-emerald-600" on:click={acceptOpinion}>
-                    <Send size={24} fill="white"/>
-                </button>
+                {#if (email && userName && title && content) && spawnSendOpinion()}
+                    <button id="send" class="button bg-emerald-600 hover:shadow-emerald-600" on:click={acceptOpinion} in:scale={{ duration: 150 }} out:scale={{ duration: 100 }}>
+                        <Send size={24} fill="white"/>
+                    </button>
+                {/if}
             </div>
         </div>
     {:else}
