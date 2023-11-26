@@ -1,5 +1,6 @@
 <script lang="ts">
     import { Rating } from "flowbite-svelte";
+    import RatingUtils from "$lib/lib.js";
     import RatingBars from "./RatingBars.svelte"
 
     interface Styling {
@@ -20,7 +21,7 @@
 
 <div id="rating-board" class="flex flex-col w-full p-2 gap-2">
     <div class="flex justify-center w-full">
-        <Rating total={starsCount} size={styling.starsSizePx} rating={2.0}/>
+        <Rating total={starsCount} size={styling.starsSizePx} rating={RatingUtils.calculateStarsRating(ratings)}/>
     </div>
     <RatingBars {ratings}/>
 </div>
