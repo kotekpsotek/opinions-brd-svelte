@@ -24,3 +24,9 @@ type Rating5 = {
 
 type RatingSetType = [Rating1, Rating2, Rating3, Rating4, Rating5];
 type OneFromRatings = Rating1 | Rating2 | Rating3 | Rating4 | Rating5;
+
+type StarsCount = 5 | 6;
+
+interface Styling {
+    starsSizePx: number
+}

@@ -1,12 +1,8 @@
 <script lang="ts">
     import { Rating } from "flowbite-svelte";
     import RatingUtils from "$lib/lib.js";
-    import RatingBars from "./RatingBars.svelte"
-
-    interface Styling {
-        starsSizePx: number
-    }
-    type StarsCount = 5 | 6;
+    import RatingBars from "$lib/components/RatingBars.svelte";
+    import Opinions from "$lib/components/Opinions.svelte"
 
     /** Styling */
     export let styling: Styling = {
@@ -24,4 +20,5 @@
         <Rating total={starsCount} size={styling.starsSizePx} rating={RatingUtils.calculateStarsRating(ratings)}/>
     </div>
     <RatingBars {ratings}/>
+    <Opinions {starsCount}/>
 </div>
