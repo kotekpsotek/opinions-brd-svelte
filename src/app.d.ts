@@ -9,8 +9,4 @@ declare global {
 	}
 }
 
-declare module 'svelte-device-info' {
-        
-}
-
 export {};

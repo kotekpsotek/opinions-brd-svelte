@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let ratings: [Rating1, Rating2, Rating3, Rating4, Rating5] = [{ label: "1 star", count: 2 }, { label: '2 stars', count: 20 }, { label: '3 stars', count: 200 }, { label: '4 stars', count: 2000 }, { label: '5 stars', count: 2222 }];
+    export let ratings: RatingSetType;
 
     function totalOpinionsCount() {
         return ratings.reduce((p, c) => {

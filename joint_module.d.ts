@@ -22,4 +22,5 @@ type Rating5 = {
     label: '5 stars'
 } & RatingCount;
 
+type RatingSetType = [Rating1, Rating2, Rating3, Rating4, Rating5];
 type OneFromRatings = Rating1 | Rating2 | Rating3 | Rating4 | Rating5;
