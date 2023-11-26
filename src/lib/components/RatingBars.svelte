@@ -1,11 +1,5 @@
 <script lang="ts">
-    type Label = '1 star' | '2 stars' | '3 stars' | '4 stars' | '5 stars';
-    interface Rating {
-        label: Label,
-        count: number
-    }
-    
-    export let ratings: Rating[] = [{ label: "1 star", count: 22 }, { label: "5 stars", count: 222 }];
+    export let ratings: [Rating1, Rating2, Rating3, Rating4, Rating5] = [{ label: "1 star", count: 2 }, { label: '2 stars', count: 20 }, { label: '3 stars', count: 200 }, { label: '4 stars', count: 2000 }, { label: '5 stars', count: 2222 }];
 
     function totalOpinionsCount() {
         return ratings.reduce((p, c) => {
@@ -13,13 +7,18 @@
         }).count;
     }
 
-    function getPercentage(forRating: Rating) {
+    function getPercentage(forRating: OneFromRatings) {
         const total = totalOpinionsCount();
-        const actual = (forRating.count / total * 100).toFixed(0);
-        return actual;
+        const actual = (forRating.count / total * 100);
+
+        const lessThen10 = actual < 10 ? actual.toFixed(1) : actual.toFixed(0);
+        const smallerThen1 = actual < 1 ? actual.toFixed(2) : lessThen10;
+        const condition = smallerThen1;
+        
+        return condition;
     }
 
-    function getPercentageFillment(node: HTMLDivElement, forRating: Rating) {
+    function getPercentageFillment(node: HTMLDivElement, forRating: OneFromRatings) {
         function callBody() {
             const percentage = getPercentage(forRating);
             node.style.width = percentage + '%';
@@ -28,7 +27,7 @@
         callBody()
 
         return {
-            update(newParam: Rating) {
+            update(newParam: OneFromRatings) {
                 forRating = newParam;
                 callBody()
             }
