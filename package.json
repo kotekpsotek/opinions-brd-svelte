@@ -44,6 +44,7 @@
   "types": "./dist/index.d.ts",
   "type": "module",
   "dependencies": {
+    "carbon-icons-svelte": "^12.4.0",
     "flowbite-svelte": "^0.43.1",
     "flowbite-svelte-icons": "^0.4.5",
     "vitest": "^0.34.6"
