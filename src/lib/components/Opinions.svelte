@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Input, Label, Rating } from "flowbite-svelte";
-    import { EnvelopeSolid } from "flowbite-svelte-icons";
+    // import InputIcon from "./utils/InputIcon.svelte"
 
     export let starsCount: StarsCount;
 
@@ -16,25 +16,32 @@
     <div id="existsing" class="flex gap-x-2">
         
     </div>
-    <div id="write-new" class="flex flex-col">
-        <div id="rate" class="flex justify-center gap-x-5">
-            <input type="number" min=1 max={starsCount} step=0.1 bind:value={rating} placeholder="Your evaluation">
-            {#key rating}
-                <Rating size={50} rating={rating}/>
-            {/key}
-        </div>
-        <div id="inputs">
-            <div id="one-shema" class="flex gap-x-2">
-                <div>
-                    <Label for="input-group-1" class="block mb-2">Your Email</Label>
-                    <Input id="email" type="email" placeholder="name@youemail.com" bind:value={email}>
-                      <EnvelopeSolid slot="left" class="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                    </Input>
-                </div>
-                <input type="text" placeholder="Your Name" bind:value={userName}>
+    <div id="write-new" class="flex flex-col gap-y-4">
+        <div id="one-schema">
+            <h2 class="h2">Your estimmate</h2>
+            <div class="flex justify-center gap-x-5">
+                <input type="number" class="input" min=1 max={starsCount} step=0.1 bind:value={rating} placeholder="Your evaluation">
+                {#key rating}
+                    <Rating size={40} rating={rating}/>
+                {/key}
             </div>
-            <input type="text" placeholder="Title" bind:value={title}>
-            <textarea placeholder="Content" id="" cols="30" rows="10" bind:value={content}></textarea>
+        </div>
+        <div id="inputs" class="flex flex-col gap-y-2 w-full">
+            <div id="one-schema">
+                <h2 class="h2">How other see you</h2>
+                <div class="flex gap-x-2 w-full">
+                    <input type="text" class="input w-1/2" placeholder="Email">
+                    <input type="text" class="input w-1/2" placeholder="Your Name" bind:value={userName}>
+                </div>
+                <!-- <InputIcon bind:value={email} placeholder="Email"/> -->
+            </div>
+            <div id="one-schema">
+                <h2 class="h2">Your Opinion</h2>
+                <div class="flex flex-col gap-y-2">
+                    <input class="input" type="text" placeholder="Title" bind:value={title}>
+                    <textarea class="input" placeholder="Content" id="" cols="30" rows="10" bind:value={content}></textarea>
+                </div>
+            </div>
         </div>
     </div>
 </section>
