@@ -24,7 +24,11 @@
         userName: string,
         rating: number,
         content: string
-    }[];
+    }[] = [{
+        userName: "Marcin",
+        rating: 5.0,
+        content: "This product is great. I recomend it for everybody"
+    }];
 </script>
 
 <section id="opinions-layout">
