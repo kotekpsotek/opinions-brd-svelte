@@ -38,7 +38,7 @@
 <section class="flex flex-col gap-y-2">
     {#each ratings as { label, count }}
         <div class="flex justify-between text-md">
-            <span id="label" class="font-semibold flex justify-center items-center">{label}</span>
+            <span id="label" class="font-semibold flex justify-center items-center text-slate-700">{label}</span>
             <div id="stripe" class="w-2/3 md:w-4/6 lg:w-10/12 border border-amber-400 rounded-xl overflow-hidden">
                 <div id="fillment-percentage" class="bg-amber-400 h-full" use:getPercentageFillment={{ label, count }}></div>
             </div>

@@ -67,7 +67,7 @@
             </div>
             <div id="inputs" class="flex flex-col gap-y-2 w-full">
                 <div id="one-schema">
-                    <h2 class="h2">How other see you</h2>
+                    <h2 class="h2">How others see you</h2>
                     <div class="flex gap-x-2 w-full">
                         <input type="text" class="input w-1/2" placeholder="Email" bind:value={email}>
                         <input type="text" class="input w-1/2" placeholder="Your Name" bind:value={userName}>
