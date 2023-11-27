@@ -1,5 +1,7 @@
 <script lang="ts">
     import OpinionsMakeNew from "./OpinionsMakeNew.svelte"
+    import OpinionsLayout from "./OpinionsLayout.svelte";
+    import SingleOpinion from "./SingleOpinion.svelte";
 
     // FIXME: In simply way this should be change to context in main file order to obtain more clear code
     export let starsCount: StarsCount = 5;
@@ -18,12 +20,19 @@
             email: 200
         }
     }
+    export let opinions: {
+        userName: string,
+        rating: number,
+        content: string
+    }[];
 </script>
 
 <section id="opinions-layout">
-    <div id="existsing" class="flex gap-x-2">
-        
-    </div>
+    <OpinionsLayout>
+        {#each opinions as opinion}
+            <SingleOpinion {...opinion}/>
+        {/each}
+    </OpinionsLayout>
     <!-- Open write new opinion menu -->
     <OpinionsMakeNew {starsCount} {shareOpinionIconSize} {requirementsToSendOpinion}/>
 </section>
