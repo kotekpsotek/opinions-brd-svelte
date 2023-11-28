@@ -7,11 +7,11 @@
 </script>
 
 <div class="flex gap-x-5 py-5 w-full">
-    <div id="name-rating" class="flex flex-col">
+    <div id="name-rating" class="flex flex-col w-44">
         <h3 id="name" class="text-lg font-semibold">{userName}</h3>
         <div id="rating" class="flex gap-x-2">
             <p class="text-md font-bold">{rating.toFixed(1)}</p>
-            <Rating id="user-stars-rating" total={5} size={25} {rating}/>
+            <Rating id="user-stars-rating" total={rating} size={25} {rating}/>
         </div>
     </div>
     <div id="content-box" >

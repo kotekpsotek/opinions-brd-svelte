@@ -24,5 +24,5 @@
         {/if}
     </OpinionsLayout>
     <!-- Open write new opinion menu -->
-    <OpinionsMakeNew/>
+    <OpinionsMakeNew on:opinion-add={({ detail: newOpinion }) => opinions = [newOpinion, ...opinions]}/>
 </section>

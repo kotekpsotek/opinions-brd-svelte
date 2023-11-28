@@ -4,7 +4,10 @@
     import { Forum, CloseOutline, Send } from "carbon-icons-svelte";
     import { scale } from "svelte/transition";
     import { getContext } from "svelte";
-    
+    import { createEventDispatcher } from "svelte";
+
+    const dsp = createEventDispatcher();
+     
     // Assigned elements
     let buttonShareNew: HTMLButtonElement;
 
@@ -40,8 +43,21 @@
         });
 
         // Listen answer
-        if (expandWriteOpinion) {
-            alert("Opinion has been sent")
+        if (sendOpinion.status == 200) {
+            alert("Opinion has been sent");
+
+            // Dispatch new opinion attop opinions list
+            dsp("opinion-add", {
+                userName, title, content, rating
+            })
+
+            // Clear all data fields in send form
+            title = "";
+            content = "";
+            rating = 1;
+           
+            // Close make new opinion bar
+            expandWriteOpinion = false;
         }
         else alert("Cannot send opinion!")
     }
