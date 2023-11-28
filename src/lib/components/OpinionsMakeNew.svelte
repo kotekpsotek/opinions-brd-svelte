@@ -4,6 +4,9 @@
     import { Forum, CloseOutline, Send } from "carbon-icons-svelte";
     import { scale } from "svelte/transition";
     import { getContext } from "svelte";
+    
+    // Assigned elements
+    let buttonShareNew: HTMLButtonElement;
 
     // Get all required stuff from context API
     const { shareOpinionIconSize, requirementsToSendOpinion, starsCount } = getContext("board") as any;
@@ -84,8 +87,8 @@
         </div>
     </div>
 {:else}
-    <button id="write-new-ex" class="w-full pl-2 flex justify-start items-center gap-x-5 border-solid border input border-slate-500 cursor-pointer transition-all hover:scale-95 hover:shadow-lg hover:shadow-slate-950" title="Close Share Opinion Section" on:click={fnExpandCloseWriteOpinion}>
+    <button id="write-new-ex" class="w-full pl-2 flex justify-start items-center gap-x-5 border-solid border input border-slate-500 cursor-pointer transition-all hover:scale-95 hover:shadow-lg hover:shadow-slate-950" title="Close Share Opinion Section" on:click={fnExpandCloseWriteOpinion} bind:this={buttonShareNew}>
         <Forum size={shareOpinionIconSize} fill="rgb(105, 109, 113)"/>
-        <input type="text" class="border-none p-none m-none" placeholder="Share your opinion..." disabled>
+        <input type="text" class="border-none p-none m-none cursor-pointer" placeholder="Share your opinion..." on:click={fnExpandCloseWriteOpinion}>
     </button>
 {/if}
