@@ -14,4 +14,4 @@ $ npm install @opinions-board/svelte
 In progress
 
 # License
-
+Apache 2.0
