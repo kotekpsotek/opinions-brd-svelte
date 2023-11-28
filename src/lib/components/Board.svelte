@@ -35,12 +35,14 @@
         rating: 5.0,
         content: "This product is great. I recomend it for everybody"
     }];
+    export let targetSendOpinion: URLTarget | URL;
 
     // Set app context for each other component
     setContext("board", {
         shareOpinionIconSize,
         requirementsToSendOpinion,
-        starsCount
+        starsCount,
+        targetSendOpinion
     });
 </script>
 
@@ -49,5 +51,5 @@
         <Rating total={starsCount} size={styling.starsSizePx} rating={RatingUtils.calculateStarsRating(ratings)}/>
     </div>
     <RatingBars {ratings}/>
-    <Opinions {opinions}/>
+    <Opinions {opinions} targetSendOpinion={""}/>
 </div>

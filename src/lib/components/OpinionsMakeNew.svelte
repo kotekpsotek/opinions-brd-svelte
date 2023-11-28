@@ -9,7 +9,7 @@
     let buttonShareNew: HTMLButtonElement;
 
     // Get all required stuff from context API
-    const { shareOpinionIconSize, requirementsToSendOpinion, starsCount } = getContext("board") as any;
+    const { shareOpinionIconSize, requirementsToSendOpinion, starsCount, targetSendOpinion } = getContext("board") as any;
     
     let email = "";
     let userName = "";
@@ -24,8 +24,26 @@
     }
 
     /** Send opinion to externnal property server */
-    function acceptOpinion() {
-        // TODO: ...
+    async function acceptOpinion() {
+        // Send opinion as POST REST method
+        const sendOpinion = await fetch(targetSendOpinion, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                email,
+                userName,
+                title,
+                content
+            })
+        });
+
+        // Listen answer
+        if (expandWriteOpinion) {
+            alert("Opinion has been sent")
+        }
+        else alert("Cannot send opinion!")
     }
 
     /**

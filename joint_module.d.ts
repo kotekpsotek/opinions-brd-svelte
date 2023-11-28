@@ -36,3 +36,5 @@ type Opinions = {
     rating: number,
     content: string
 }[]
+
+type URLTarget = string;
