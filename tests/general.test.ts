@@ -13,8 +13,9 @@ it("Calculate Rating", () => {
 
 describe("Pagination Utilities", () => {
     // Opinions list with fillment
+    const pag = new Pagination();
     const opinions: Opinions = [];
-    for (let i = 0; i < 22; i++) {
+    for (let i = 0; i < 41; i++) {
         opinions.push({
             userName: "Wacek",
             rating: 4.0,
@@ -23,9 +24,15 @@ describe("Pagination Utilities", () => {
     }
 
     it("Get pages", () => {
-        const pag = new Pagination();
         const pages = pag.getPaginationPages(opinions, true);
 
         console.log(pages)
-    })
+    });
+
+    it("Get opinions per page", () => {
+        const page1 = pag.getOpinionsForPage(opinions, 1, true);
+        const page2 = pag.getOpinionsForPage(opinions, 2, true);
+        const page3 = pag.getOpinionsForPage(opinions, 3, true);
+        console.log(`page 1: ${JSON.stringify(page1)}\n\npage 2: ${JSON.stringify(page2)}\n\npage 3: ${JSON.stringify(page3)}`)
+    });
 })

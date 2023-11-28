@@ -32,7 +32,7 @@ interface PaginationSchema {
 
 /** Everything about pagination */
 export class Pagination implements PaginationSchema {
-    /** Get pagination pages */
+    /** Get pagination number named pages */
     getPaginationPages(ops?: Opinions, test?: boolean): PaginationProps["pages"] | undefined {
         if (ops?.length) {
             // Chasis
@@ -49,6 +49,16 @@ export class Pagination implements PaginationSchema {
             }
 
             return set;
+        }
+
+        return;
+    }
+
+    /** Get opinions batch for determined page */
+    getOpinionsForPage(ops?: Opinions, pageNum?: number, test?: boolean) {
+        if (ops && pageNum) {
+            const { opinionsCountPerPage } = test ? { opinionsCountPerPage: 20 }: getContext<{ opinionsCountPerPage: number }>("board");
+            return ops.slice(pageNum * opinionsCountPerPage - opinionsCountPerPage, pageNum * opinionsCountPerPage);
         }
 
         return;
