@@ -2,7 +2,7 @@
     import { Rating } from "flowbite-svelte";
     import RatingUtils from "$lib/lib.js";
     import RatingBars from "$lib/components/RatingBars.svelte";
-    import Opinions from "$lib/components/Opinions.svelte";
+    import OpinionsCmp from "$lib/components/Opinions.svelte";
     import { setContext } from "svelte";
 
     /** Styling */
@@ -13,7 +13,7 @@
     /** Stars count */
     export let starsCount: StarsCount = 5;
     /** Ratings */
-    export let ratings: RatingSetType = [{ label: "1 star", count: 2 }, { label: '2 stars', count: 20 }, { label: '3 stars', count: 200 }, { label: '4 stars', count: 2000 }, { label: '5 stars', count: 2222 }];
+    export let ratings: RatingSetType = [{ label: "1 star", count: 0 }, { label: '2 stars', count: 0 }, { label: '3 stars', count: 0 }, { label: '4 stars', count: 0 }, { label: '5 stars', count: 1 }]; // FIXME: add checking whether here is any count assigned
     // All required for 'OpinionsMakeNew.svelte' Component
     export let shareOpinionIconSize = 25 as 32;
     export let requirementsToSendOpinion = {
@@ -30,19 +30,17 @@
             email: 200
         }
     }
-    export let opinions: Opinions = [/* {
-        userName: "Marcin",
-        rating: 5.0,
-        content: "This product is great. I recomend it for everybody"
-    } */];
+    export let opinions: Opinions;
     export let targetSendOpinion: URLTarget | URL;
+    export let opinionsCountPerPage = 20;
 
     // Set app context for each other component
     setContext("board", {
         shareOpinionIconSize,
         requirementsToSendOpinion,
         starsCount,
-        targetSendOpinion
+        targetSendOpinion,
+        opinionsCountPerPage
     });
 </script>
 
@@ -51,5 +49,5 @@
         <Rating total={starsCount} size={styling.starsSizePx} rating={RatingUtils.calculateStarsRating(ratings)}/>
     </div>
     <RatingBars {ratings}/>
-    <Opinions {opinions}/>
+    <OpinionsCmp {opinions}/>
 </div>

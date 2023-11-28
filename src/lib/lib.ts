@@ -38,7 +38,6 @@ export class Pagination implements PaginationSchema {
             // Chasis
             const { opinionsCountPerPage } = test ? { opinionsCountPerPage: 20 }: getContext<{ opinionsCountPerPage: number }>("board");
             const pagesAmount = Math.ceil(ops.length / opinionsCountPerPage)
-            console.log(pagesAmount)
             const set = [] as NonNullable<PaginationProps["pages"]>;
 
             // Get pages
