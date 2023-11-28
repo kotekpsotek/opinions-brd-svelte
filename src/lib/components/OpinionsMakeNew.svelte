@@ -3,24 +3,10 @@
     import { Rating } from "flowbite-svelte";
     import { Forum, CloseOutline, Send } from "carbon-icons-svelte";
     import { scale } from "svelte/transition";
+    import { getContext } from "svelte";
 
-    // FIXME: In simply way this should be change to context in main file order to obtain more clear code
-    export let starsCount: StarsCount = 5;
-    export let shareOpinionIconSize = 25 as 32;
-    export let requirementsToSendOpinion = {
-        minSizes: {
-            title: 5,
-            userName: 1,
-            email: 2,
-            content: 20
-        },
-        maxMaxSizes: {
-            content: 20000,
-            userName: 30,
-            title: 40,
-            email: 200
-        }
-    }
+    // Get all required stuff from context API
+    const { shareOpinionIconSize, requirementsToSendOpinion, starsCount } = getContext("board") as any;
     
     let email = "";
     let userName = "";
@@ -28,7 +14,7 @@
     let content = "";
 
     let rating: number = 1
-    let expandWriteOpinion = true;
+    let expandWriteOpinion = false;
 
     function fnExpandCloseWriteOpinion() {
         expandWriteOpinion = !expandWriteOpinion;

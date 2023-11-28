@@ -30,3 +30,9 @@ type StarsCount = 5 | 6;
 interface Styling {
     starsSizePx: number
 }
+
+type Opinions = {
+    userName: string,
+    rating: number,
+    content: string
+}[]
