@@ -2,16 +2,22 @@
     import OpinionsMakeNew from "./OpinionsMakeNew.svelte"
     import OpinionsLayout from "./OpinionsLayout.svelte";
     import SingleOpinion from "./SingleOpinion.svelte";
+    import NoOpinionsLeft from "./NoOpinionsLeft.svelte";
 
     // Should be such because context is not reactive by the way
     export let opinions: Opinions;
+    console.log(opinions)
 </script>
 
 <section id="opinions-layout">
     <OpinionsLayout>
-        {#each opinions as opinion}
-            <SingleOpinion {...opinion}/>
-        {/each}
+        {#if opinions?.length}
+            {#each opinions as opinion}
+                <SingleOpinion {...opinion}/>
+            {/each}
+        {:else}
+            <NoOpinionsLeft/>
+        {/if}
     </OpinionsLayout>
     <!-- Open write new opinion menu -->
     <OpinionsMakeNew/>

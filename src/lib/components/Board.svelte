@@ -30,11 +30,11 @@
             email: 200
         }
     }
-    export let opinions: Opinions = [{
+    export let opinions: Opinions = [/* {
         userName: "Marcin",
         rating: 5.0,
         content: "This product is great. I recomend it for everybody"
-    }];
+    } */];
     export let targetSendOpinion: URLTarget | URL;
 
     // Set app context for each other component
@@ -51,5 +51,5 @@
         <Rating total={starsCount} size={styling.starsSizePx} rating={RatingUtils.calculateStarsRating(ratings)}/>
     </div>
     <RatingBars {ratings}/>
-    <Opinions {opinions} targetSendOpinion={""}/>
+    <Opinions {opinions}/>
 </div>

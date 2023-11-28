@@ -2,4 +2,4 @@
     import Board from "../lib/components/Board.svelte"
 </script>
 
-<Board/>
+<Board targetSendOpinion={"http://localhost:5173"}/>
