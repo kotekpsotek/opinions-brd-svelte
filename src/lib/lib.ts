@@ -1,3 +1,6 @@
+import { getContext } from 'svelte';
+import type { PaginationProps } from 'flowbite-svelte/Pagination.svelte';
+
 /** General utilites */
 export default class Utils {
     /**
@@ -19,5 +22,35 @@ export default class Utils {
 
         // Throw back
         return Number(rating.toFixed(2));
+    }
+}
+
+/** Schema for pagination */
+interface PaginationSchema {
+    getPaginationPages(ops?: Opinions): PaginationProps["pages"] | undefined
+}
+
+/** Everything about pagination */
+export class Pagination implements PaginationSchema {
+    /** Get pagination pages */
+    getPaginationPages(ops?: Opinions, test?: boolean): PaginationProps["pages"] | undefined {
+        if (ops?.length) {
+            // Chasis
+            const { opinionsCountPerPage } = test ? { opinionsCountPerPage: 20 }: getContext<{ opinionsCountPerPage: number }>("board");
+            const pagesAmount = Math.ceil(ops.length / opinionsCountPerPage)
+            console.log(pagesAmount)
+            const set = [] as NonNullable<PaginationProps["pages"]>;
+
+            // Get pages
+            for (let i = 0; i < (pagesAmount >= 1 ? pagesAmount : 1); i++) {
+                set.push({
+                    name: i + 1
+                })
+            }
+
+            return set;
+        }
+
+        return;
     }
 }
