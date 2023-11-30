@@ -1,7 +1,7 @@
 <script lang=ts>
     import Board from "../lib/components/Board.svelte"
 
-    const opinions = [] as Opinions[];
+    const opinions = [] as Opinions;
     for (let i = 0; i < 1000; i++) {
         opinions.push({
             userName: "Jan Kowalski " + i,

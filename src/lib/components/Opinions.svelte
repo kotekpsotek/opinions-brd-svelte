@@ -10,11 +10,22 @@
 
     // Get opinions batch for specific page
     let actualPage = 1;
+    $: pagesList = new Pagination().getPaginationPages(opinions);
     $: opinionsForPage = new Pagination().getOpinionsForPage(opinions, actualPage);
+
+    function next() {
+        if (actualPage != pagesList!.length) {
+            actualPage += 1
+        }
+    }
+
+    function previous() {
+        if (actualPage != 1) actualPage -= 1;
+    }
 </script>
 
 <section id="opinions-layout">
-    <OpinionsLayout {opinions} {actualPage} on:next={() => actualPage+=1} on:previous={_ => actualPage -= 1}>
+    <OpinionsLayout {opinions} {actualPage} on:next={next} on:previous={previous}>
         {#if opinions?.length && opinionsForPage?.length}
             {#each opinionsForPage as opinion}
                 <SingleOpinion {...opinion}/>
