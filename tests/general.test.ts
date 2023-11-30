@@ -1,5 +1,5 @@
 import { it, expect, describe } from "vitest";
-import Utils, { Pagination } from "../src/lib/lib.js"
+import Utils, { Pagination, Rating } from "../src/lib/lib.js"
 
 it("Calculate Rating", () => {
     // Initialize test property
@@ -10,6 +10,26 @@ it("Calculate Rating", () => {
     expect(test, "Is not number").toBeTypeOf("number");
     expect(Number.isInteger(test), "Isn't float").toBe(false);
 })
+
+it("Calculate AVG Rating", () => {
+    // Initialize datas for rating
+    const ops: Opinions = [
+        { userName: "Michał", content: "", rating: 4.5 },
+        { userName: "Michał", content: "", rating: 4.8 },
+        { userName: "Michał", content: "", rating: 2.3 },
+        { userName: "Michał", content: "", rating: 2.8 },
+        { userName: "Michał", content: "", rating: 5.0 },
+        { userName: "Michał", content: "", rating: 4.9 },
+        { userName: "Michał", content: "", rating: 4.5 },
+    ];
+
+    // AVG Test
+    const avgRatingIs = Rating.avgCalculateFromOpinions(ops);
+    expect(avgRatingIs, "Is not number").toBeTypeOf("number");
+
+    // Log rating
+    console.log(avgRatingIs)
+});
 
 describe("Pagination Utilities", () => {
     // Opinions list with fillment

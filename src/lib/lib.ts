@@ -63,3 +63,24 @@ export class Pagination implements PaginationSchema {
         return;
     }
 }
+
+export class Rating {
+    static avgCalculateFromOpinions(ops: Opinions): undefined | number {
+        const amount = ops.length;
+        if (amount) {
+            const rateNumSteps = ops.reduce((p, c) => {
+                return {
+                    ...c,
+                    rating: p.rating + c.rating
+                }
+            }).rating;
+            const avgRating = Number((rateNumSteps / amount).toFixed(2)); 
+
+            // Return rating
+            return avgRating;
+        }
+
+        // Return void
+        return;
+    }
+}
