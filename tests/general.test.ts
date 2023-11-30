@@ -31,6 +31,25 @@ it("Calculate AVG Rating", () => {
     console.log(avgRatingIs)
 });
 
+it("Obtain Ratings List", () => {
+    // Initialize datas for rating
+    const ops: Opinions = [
+        { userName: "Michał", content: "", rating: 4.5 },
+        { userName: "Michał", content: "", rating: 4.8 },
+        { userName: "Michał", content: "", rating: 2.3 },
+        { userName: "Michał", content: "", rating: 2.8 },
+        { userName: "Michał", content: "", rating: 5.0 },
+        { userName: "Michał", content: "", rating: 4.9 },
+        { userName: "Michał", content: "", rating: 4.5 },
+    ];
+
+    // List Obtain
+    const ratingListIs = Rating.getRatingsLabelFromOpinions(ops);
+    expect(ratingListIs, "Is not number").toBeTypeOf("object");
+
+    console.log(ratingListIs)
+});
+
 describe("Pagination Utilities", () => {
     // Opinions list with fillment
     const pag = new Pagination();

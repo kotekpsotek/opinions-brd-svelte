@@ -83,4 +83,20 @@ export class Rating {
         // Return void
         return;
     }
+
+    static getRatingsLabelFromOpinions(ops: Opinions): RatingSetType | undefined {
+        if (ops.length) {
+            const rst: RatingSetType = [{ label: "1 star", count: 0 }, { label: '2 stars', count: 0 }, { label: '3 stars', count: 0 }, { label: '4 stars', count: 0 }, { label: '5 stars', count: 0 }];
+
+            // Count stars for each rating
+            ops.forEach(v => {
+                const rtR = Math.round(v.rating)
+                rst[rtR - 1].count += 1;
+            });
+
+            return rst;
+        }
+
+        return;
+    }
 }
