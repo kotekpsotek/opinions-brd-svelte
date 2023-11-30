@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Rating } from "flowbite-svelte";
-    import RatingUtils from "$lib/lib.js";
+    import { Rating as RatingUtils } from "$lib/lib.js";
     import RatingBars from "$lib/components/RatingBars.svelte";
     import OpinionsCmp from "$lib/components/Opinions.svelte";
     import { setContext } from "svelte";
@@ -12,8 +12,6 @@
     }
     /** Stars count */
     export let starsCount: StarsCount = 5;
-    /** Ratings */
-    export let ratings: RatingSetType = [{ label: "1 star", count: 0 }, { label: '2 stars', count: 0 }, { label: '3 stars', count: 0 }, { label: '4 stars', count: 0 }, { label: '5 stars', count: 1 }]; // FIXME: add checking whether here is any count assigned
     // All required for 'OpinionsMakeNew.svelte' Component
     export let shareOpinionIconSize = 25 as 32;
     export let requirementsToSendOpinion = {
@@ -31,6 +29,8 @@
         }
     }
     export let opinions: Opinions;
+    /** Ratings - set manually otherwise will be determined from opinions */
+    export let ratings: RatingSetType | undefined = RatingUtils.getRatingsLabelFromOpinions(opinions);
     export let targetSendOpinion: URLTarget | URL;
     export let opinionsCountPerPage = 20;
 
@@ -46,7 +46,7 @@
 
 <div id="rating-board" class="flex flex-col w-full p-2 gap-2">
     <div class="flex justify-center w-full">
-        <Rating total={starsCount} size={styling.starsSizePx} rating={RatingUtils.calculateStarsRating(ratings)}/>
+        <Rating total={starsCount} size={styling.starsSizePx} rating={RatingUtils.avgCalculateFromOpinions(opinions)}/>
     </div>
     <RatingBars {ratings}/>
     <OpinionsCmp {opinions}/>
