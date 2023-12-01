@@ -10,7 +10,54 @@ Yes due to license, you can also buy me a tea
 $ npm install @opinions-board/svelte
 ```
 
+## How to use
+```html
+    <script>
+        import OpinionsBorad from "@opinions-board/svelte"
+
+        const opinions = [
+            {
+                userName: "example user name",
+                rating: 5.0,
+                content: "ABC "
+            }
+        ];
+    </script>
+
+    <Board {opinions} targetSendOpinion={"http://localhost:5173"}/>
+```
+ ### Description
+1. **opinions** - is a list of opinions objects in scheme
+```typescript
+    interface Opinions {
+        /** is the user name whose was created a comment */
+        userName: string,
+        /** is the this user estimation in range 1.0 - 5.0 (float number) */
+        rating: number,
+        /** the opinion content */
+        content: string
+    }
+```
+2. **targetSendOpinions** - is the server address where new opinions will be send in such form
+```typescript
+    /* JSON - Will be send as "application/json" */
+    interface SendOpinion {
+        /** Sender email */
+        email: string,
+        /** Visible for others user name */
+        userName: string,
+        /** Comment title */
+        title: string,
+        /** Comment content */
+        content: string
+    }
+```
+>> 1. Server when comment is accepted should respond with ***http status 200*** which testifies for commponent that everything is great and user comment will be adding atop others (as fresh one)
+
+* All such options given in example must be initialized with component
+
 ## Preview
+[Video](https://youtu.be/qf7KFmTXO4g?feature=shared)
 <details>
     <summary>
         <b>Images</b>
