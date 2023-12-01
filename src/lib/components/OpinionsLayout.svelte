@@ -23,7 +23,7 @@
                 Page
                 <span class="font-semibold">{actualPage}</span>
                 of
-                <span class="font-semibold">{pages.length}</span>
+                <span class="font-semibold">{pages?.length || 1}</span>
             </p>
             <Pagination on:next on:previous/>
         </div>
